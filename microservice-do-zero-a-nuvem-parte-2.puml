@@ -1,0 +1,25 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Microservices do zero a nuvem parte 2
+
+SHOW_PERSON_OUTLINE()
+
+Person(user, "User", "Usuario do Sistema")
+
+Container(apiGateway, "API Gateway", "Servico NestJS rodando na porta 3000")
+
+Container_Boundary(microservices, "Microservices") {
+    Container(serviceA, "Service A", "Microservice NestJS rodando na porta 8888")
+    Container(serviceB, "Service B", "Microservice NestJS rodando na porta 8887")
+}
+
+Lay_U(serviceB, serviceA)
+
+Rel_R(user, apiGateway, "Faz uma requisicao", "HTTP Request")
+Rel_R(apiGateway, microservices, "Router/Composer")
+
+SHOW_LEGEND()
+@enduml

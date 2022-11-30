@@ -1,0 +1,7 @@
+GET http://localhost:31535/ping-a
+
+###
+GET http://localhost:31535/ping-b
+
+###
+GET http://localhost:31535/ping-all
